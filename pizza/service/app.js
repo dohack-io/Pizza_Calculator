@@ -8,19 +8,19 @@ const cheerio = require('cheerio');
 const city = 'dortmund';
 const organizationUrl = `https://pizza.de/lieferservice/${city}/pizza-pasta-bestellen/`;
 
-var data = getPageData(organizationUrl)
+getPageData(organizationUrl)
 .then(
   function(data) {
     data.text().then((text)=> {
       const result = cheerio.load(text);
-      // saveDataToFile(result);
-      const nearbyUniqueRestaurants = getUniqueNearbyRestaurants(result);
-      console.log(nearbyUniqueRestaurants);
-      getRestaurantsData(nearbyUniqueRestaurants);
+      var promise = Promise.resolve(getUniqueNearbyRestaurants(result));
+      promise.then(function(nearbyUniqueRestaurants) {
+        const restaurantData = getRestaurantData(nearbyUniqueRestaurants);
+      });
     });
 });
 
-async function getUniqueNearbyRestaurants(result){
+function getUniqueNearbyRestaurants(result){
   const links = result('a[href^="/lieferservice/"]').map((index, element) => {
 
   return result(element).attr('href');
@@ -30,19 +30,15 @@ async function getUniqueNearbyRestaurants(result){
   return nearbyUniqueRestaurants;
 }
 
-async function getRestaurantsData(nearbyUniqueRestaurants) {
-  const data = `https://www.pizza.de/${nearbyUniqueRestaurants[0]}`;
-  console.log(data);
+function getRestaurantData(nearbyUniqueRestaurants){
+  for(let restaurant = 0; restaurant < 10; restaurant++){
+    var restaurantLink = `https://www.pizza.de${nearbyUniqueRestaurants[restaurant]}`;
+    console.log(restaurantLink);
+    const restaurantPageData = getPageData(restaurantLink);
+    const result = cheerio.load(restaurantPageData);
+  }
 }
 
-async function getPageData(organizationUrl) {
+async function getPageData(organizationUrl){
   return await fetch(organizationUrl);
-}
-
-function saveDataToFile(data) {
-  fs.writeFile('data.txt', data, function(err) {
-    if(err) {
-      throw (err);
-    }
-  });
 }
