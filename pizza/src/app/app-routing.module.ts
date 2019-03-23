@@ -1,10 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule }             from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CompareViewComponent }      from './compare-view/compare-view.component';
+import { PizzaCreatorComponent }      from './pizza-creator/pizza-creator.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'compare-view', component: CompareViewComponent },
+  {path: 'pizza-creator', component: PizzaCreatorComponent}
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ] 
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule {}
+
