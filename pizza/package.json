@@ -24,6 +24,7 @@
     "core-js": "^2.5.4",
     "node-fetch": "^2.3.0",
     "node-html-parser": "^1.1.13",
+    "puppeteer": "^1.13.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
