@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CompareViewComponent } from './compare-view/compare-view.component';
+import { NavigationViewComponent } from './navigation-view/navigation-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompareViewComponent
+    CompareViewComponent,
+    NavigationViewComponent
   ],
   imports: [
     BrowserModule,
