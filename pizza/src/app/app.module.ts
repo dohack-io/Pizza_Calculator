@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CompareViewComponent } from './compare-view/compare-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompareViewComponent
   ],
   imports: [
     BrowserModule,
