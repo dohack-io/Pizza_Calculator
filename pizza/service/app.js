@@ -9,18 +9,27 @@ const fs = require('fs');
 
 var organizationUrl = "https://pizza.de/lieferservice/dortmund/44269/?lat=51.50441060000001&lon=7.526894099999999";
 
-var data = getPageData(organizationUrl);
-var body = JSON.stringify(data);
-fs.writeFile('data.txt', data, function(err) {
+//var data = getPageData(organizationUrl);
+//var body = JSON.stringify(data);
+fs.writeFile('data.txt', data,'utf8', function(err) {
   if(err) {
     throw (err);
   }
+  var data = function(organizationUrl) {
+    fetch(organizationUrl);
+  };
+  return data;
 });
 
 console.log(body);
-
+/*
 function getPageData(organizationUrl) {
  fetch(organizationUrl);
+}
+*/
+
+function calc(durchmesser,preis){
+  return preis/(Math.PI*(Math.pow(durchmesser/2,2)));
 }
 
 
