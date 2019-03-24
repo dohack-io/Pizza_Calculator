@@ -21,7 +21,7 @@ async function main(organizationUrl){
  const result = cheerio.load(localRestaurantsDataReadable);
  const nearbyRestaurantsPaths = await Promise.resolve(getNearbyRestaurantsPaths(result));
  const nearbyRestaurantsUrls = getNearbyRestaurantUrls(nearbyRestaurantsPaths);
- const restaurantsData = getRestaurantsData(nearbyRestaurantsUrls;)
+ const restaurantsData = getRestaurantsData(nearbyRestaurantsUrls);
  console.log(nearbyRestaurantsUrls);
 }
 
