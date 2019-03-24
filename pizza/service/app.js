@@ -50,13 +50,20 @@ function getNearbyRestaurantUrls(nearbyRestaurantsPaths){
 }
 
 async function getRestaurantsData(nearbyRestaurantsUrls){
-  const standardPizzas = ['Pizza Margarita', 'Pizza Thunfisch', 'Pizza Tonno', 'Pizza Salami'];
+  const standardPizzas = ['Pizza Margherita', 'Pizza Thunfisch', 'Pizza Tonno', 'Pizza Salami'];
 
   var restaurantData = await Promise.resolve(getPageData(nearbyRestaurantsUrls[0]));
   var text = await restaurantData.text();
   var result = cheerio.load(text);
-  const restaurantPizzas = result('span[class="additives"]').map((index, restaurantMenu) => {
-    return result(restaurantMenu).attr('class');
+
+  const restaurantMenu = result('li[class="menu-section__item"]').map((index, restaurantMenu) => {
+    return result(restaurantMenu).text();
   }).get();
-  console.log(restaurantPizzas);
+
+  restaurantMenu.forEach(element => {
+    var item = element.includes('Pizza Margherita');
+    if(item == true) {
+      console.log(item);
+    }
+  });
 }
