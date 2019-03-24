@@ -2,7 +2,6 @@
 'use strict';
 
 const fetch = require('node-fetch');
-const fs = require('fs');
 const cheerio = require('cheerio');
 
 // Pizza sizes in cm (not all restaurants contains a definition for their pizza-sizes)
@@ -50,8 +49,14 @@ function getNearbyRestaurantUrls(nearbyRestaurantsPaths){
   return nearbyRestaurantsUrls;
 }
 
-function getRestaurantsData(nearbyRestaurantsUrls){
-  nearbyRestaurantsUrls.forEach(restaurant => {
-    var restaurantsData = this.getPageData(restaurantLink);
-  });
+async function getRestaurantsData(nearbyRestaurantsUrls){
+  const standardPizzas = ['Pizza Margarita', 'Pizza Thunfisch', 'Pizza Tonno', 'Pizza Salami'];
+
+  var restaurantData = await Promise.resolve(getPageData(nearbyRestaurantsUrls[0]));
+  var text = await restaurantData.text();
+  var result = cheerio.load(text);
+  const restaurantPizzas = result('span[class="additives"]').map((index, restaurantMenu) => {
+    return result(restaurantMenu).attr('class');
+  }).get();
+  console.log(restaurantPizzas);
 }
