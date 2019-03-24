@@ -13,7 +13,11 @@ export class CompareViewComponent implements OnInit {
   }
   
   submitData(){
-
+    this.getConfig('test', {})
+    .subscribe((data) => this.config = {
+        heroesUrl: data['heroesUrl'],
+        textfile:  data['textfile']
+    });
   }
 getConfig(url,body) {
   return this.http.post(url,body);
