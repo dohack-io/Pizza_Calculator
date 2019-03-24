@@ -34,6 +34,11 @@ function getNearbyRestaurantsPaths(result){
   }).get();
 
   return [...new Set(nearbyRestaurantsPaths)];
+  
+var organizationUrl = "https://pizza.de/lieferservice/dortmund/44269/?lat=51.50441060000001&lon=7.526894099999999";
+
+function calc(durchmesser,preis){
+  return preis/(Math.PI*(Math.pow(durchmesser/2,2)));
 }
 
 function getNearbyRestaurantUrls(nearbyRestaurantsPaths){
