@@ -63,7 +63,7 @@ async function getRestaurantsData(nearbyRestaurantsUrls){
   restaurantMenu.forEach(element => {
     var item = element.includes('Pizza Margherita');
     if(item == true) {
-      console.log(item);
+      console.log(element);
     }
   });
 }
